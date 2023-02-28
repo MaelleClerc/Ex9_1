@@ -153,7 +153,7 @@ void APP_Tasks ( void )
             DebounceInit(&DescrPB);
             
             // Initialisation de l'I2C
-            i2c_init(false);
+            i2c_init(true);
             
              printf_lcd("Ex9_1");
             lcd_gotoxy(1,2);
