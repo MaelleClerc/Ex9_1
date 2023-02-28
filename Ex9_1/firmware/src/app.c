@@ -54,6 +54,11 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 
 #include "app.h"
+#include "Mc32Debounce.h"
+#include "Mc32DriverLcd.h"
+#include "DefMenuGen.h"
+#include "Mc32_I2cUtilCCS.h"
+#include "Mc32gestI2cSeeprom.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -77,6 +82,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 */
 
 APP_DATA appData;
+S_SwitchDescriptor DescrPB;
 
 // *****************************************************************************
 // *****************************************************************************
@@ -142,17 +148,34 @@ void APP_Tasks ( void )
         case APP_STATE_INIT:
         {
             bool appInitialized = true;
-       
-        
-            if (appInitialized)
-            {
             
-                appData.state = APP_STATE_SERVICE_TASKS;
-            }
+            // Initialisation de l'anti rebond 
+            DebounceInit(&DescrPB);
+            
+            // Initialisation de l'I2C
+            i2c_init(false);
+            
+             printf_lcd("Ex9_1");
+            lcd_gotoxy(1,2);
+            printf_lcd("Caroline Mieville");
+            lcd_gotoxy(1,3);
+            printf_lcd("Maelle Clerc");
+
+            // Active les timers 
+            DRV_TMR0_Start();
+       
+            appData.state = APP_STATE_WAIT;
+            
             break;
         }
 
         case APP_STATE_SERVICE_TASKS:
+        {
+        
+            break;
+        }
+        
+        case APP_STATE_WAIT:
         {
         
             break;
@@ -168,6 +191,11 @@ void APP_Tasks ( void )
             break;
         }
     }
+}
+
+void APP_UpdateState ( APP_STATES NewState )
+{
+    appData.state = NewState;
 }
 
  
