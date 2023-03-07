@@ -49,7 +49,13 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include <stdbool.h>
 #include "system/common/sys_common.h"
 #include "system/common/sys_module.h"
-#include "system/devcon/sys_devcon.h"
+#include "driver/i2c/drv_i2c.h"
+         
+     
+#include "framework/driver/i2c/drv_i2c_static_buffer_model.h"
+     
+ 
+ #include "system/devcon/sys_devcon.h"
 #include "system/clk/sys_clk.h"
 #include "system/int/sys_int.h"
 #include "driver/tmr/drv_tmr_static.h"

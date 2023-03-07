@@ -68,12 +68,12 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 /*** DEVCFG1 ***/
 
 #pragma config FNOSC =      PRIPLL
-#pragma config FSOSCEN =    ON
-#pragma config IESO =       ON
-#pragma config POSCMOD =    XT
+#pragma config FSOSCEN =    OFF
+#pragma config IESO =       OFF
+#pragma config POSCMOD =    HS
 #pragma config OSCIOFNC =   OFF
 #pragma config FPBDIV =     DIV_1
-#pragma config FCKSM =      CSECMD
+#pragma config FCKSM =      CSDCMD
 #pragma config WDTPS =      PS1048576
 #pragma config FWDTEN =     OFF
 /*** DEVCFG2 ***/
@@ -82,16 +82,16 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #pragma config FPLLMUL =    MUL_20
 #pragma config FPLLODIV =   DIV_1
 #pragma config UPLLIDIV =   DIV_2
-#pragma config UPLLEN =     ON
+#pragma config UPLLEN =     OFF
 /*** DEVCFG3 ***/
 
 #pragma config USERID =     0xffff
 #pragma config FSRSSEL =    PRIORITY_7
-#pragma config FMIIEN =     OFF
+#pragma config FMIIEN =     ON
 #pragma config FETHIO =     ON
 #pragma config FCANIO =     ON
-#pragma config FUSBIDIO =   ON
-#pragma config FVBUSONIO =  ON
+#pragma config FUSBIDIO =   OFF
+#pragma config FVBUSONIO =  OFF
 // </editor-fold>
 
 // *****************************************************************************
@@ -99,6 +99,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // Section: Driver Initialization Data
 // *****************************************************************************
 // *****************************************************************************
+// <editor-fold defaultstate="collapsed" desc="DRV_I2C Initialization Data">
+// </editor-fold>
 
 // *****************************************************************************
 // *****************************************************************************
@@ -150,6 +152,8 @@ void SYS_Initialize ( void* data )
     BSP_Initialize();        
 
     /* Initialize Drivers */
+    DRV_I2C0_Initialize();
+
     /*Initialize TMR0 */
     DRV_TMR0_Initialize();
  

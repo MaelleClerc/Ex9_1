@@ -140,6 +140,8 @@ void APP_Initialize ( void )
 
 void APP_Tasks ( void )
 {
+    uint8_t msb, lsb;
+    uint16_t valeur;
 
     /* Check the application's current state. */
     switch ( appData.state )
@@ -155,11 +157,14 @@ void APP_Tasks ( void )
             // Initialisation de l'I2C
             i2c_init(true);
             
+            lcd_init();
+            lcd_gotoxy(1,1);
              printf_lcd("Ex9_1");
             lcd_gotoxy(1,2);
             printf_lcd("Caroline Mieville");
             lcd_gotoxy(1,3);
             printf_lcd("Maelle Clerc");
+            lcd_bl_on();
 
             // Active les timers 
             DRV_TMR0_Start();
@@ -171,6 +176,27 @@ void APP_Tasks ( void )
 
         case APP_STATE_SERVICE_TASKS:
         {
+            // Ecriture
+            i2c_start();
+            i2c_write(0b10101110);  // Adresse de MPC79411 + Ecriture
+            i2c_write(0b00000001);  // Adresse byte
+            i2c_write(0b11001100);  // Data byte
+            i2c_write(0b00110011);  // Data byte
+            i2c_stop();
+            
+            // Lecture
+            i2c_start();
+            i2c_write(0b10101111);  // Adresse de MPC79411 + Lecture
+            i2c_write(0b00000001);  // Adresse byte
+            msb = i2c_read(1);
+            lsb = i2c_read(0);
+            i2c_stop();
+            
+            valeur = lsb + (msb << 8);
+            
+            lcd_gotoxy(1,4);
+            printf_lcd("%.d", valeur);
+            //printf_lcd("bouh");
         
             break;
         }

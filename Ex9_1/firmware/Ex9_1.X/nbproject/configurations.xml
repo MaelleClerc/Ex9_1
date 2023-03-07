@@ -9,7 +9,10 @@
           <logicalFolder name="f1" displayName="default" projectFiles="true">
             <logicalFolder name="f1" displayName="framework" projectFiles="true">
               <logicalFolder name="f1" displayName="driver" projectFiles="true">
-                <logicalFolder name="f1" displayName="tmr" projectFiles="true">
+                <logicalFolder name="f1" displayName="i2c" projectFiles="true">
+                  <itemPath>../src/system_config/default/framework/driver/i2c/drv_i2c_static_buffer_model.h</itemPath>
+                </logicalFolder>
+                <logicalFolder name="f2" displayName="tmr" projectFiles="true">
                   <itemPath>../src/system_config/default/framework/driver/tmr/drv_tmr_static.h</itemPath>
                 </logicalFolder>
               </logicalFolder>
@@ -44,7 +47,17 @@
       </logicalFolder>
       <logicalFolder name="f1" displayName="framework" projectFiles="true">
         <logicalFolder name="f1" displayName="driver" projectFiles="true">
-          <logicalFolder name="f1" displayName="tmr" projectFiles="true">
+          <logicalFolder name="f1" displayName="i2c" projectFiles="true">
+            <logicalFolder name="f1" displayName="src" projectFiles="true">
+              <itemPath>../../../../../../../framework/driver/i2c/src/drv_i2c_local.h</itemPath>
+              <itemPath>../../../../../../../framework/driver/i2c/src/drv_i2c_variant_mapping.h</itemPath>
+            </logicalFolder>
+            <itemPath>../../../../../../../framework/driver/i2c/drv_i2c.h</itemPath>
+            <itemPath>../../../../../../../framework/driver/i2c/drv_i2c_device_pic32m.h</itemPath>
+            <itemPath>../../../../../../../framework/driver/i2c/drv_i2c_compatibility.h</itemPath>
+            <itemPath>../../../../../../../framework/driver/i2c/drv_i2c_mapping.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="tmr" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
               <itemPath>../../../../../../../framework/driver/tmr/src/drv_tmr_variant_mapping.h</itemPath>
             </logicalFolder>
@@ -103,7 +116,13 @@
           <logicalFolder name="f1" displayName="default" projectFiles="true">
             <logicalFolder name="f1" displayName="framework" projectFiles="true">
               <logicalFolder name="f1" displayName="driver" projectFiles="true">
-                <logicalFolder name="f1" displayName="tmr" projectFiles="true">
+                <logicalFolder name="f1" displayName="i2c" projectFiles="true">
+                  <logicalFolder name="f1" displayName="src" projectFiles="true">
+                    <itemPath>../src/system_config/default/framework/driver/i2c/src/drv_i2c_static_buffer_model.c</itemPath>
+                    <itemPath>../src/system_config/default/framework/driver/i2c/src/drv_i2c_mapping.c</itemPath>
+                  </logicalFolder>
+                </logicalFolder>
+                <logicalFolder name="f2" displayName="tmr" projectFiles="true">
                   <logicalFolder name="f1" displayName="src" projectFiles="true">
                     <itemPath>../src/system_config/default/framework/driver/tmr/src/drv_tmr_static.c</itemPath>
                     <itemPath>../src/system_config/default/framework/driver/tmr/src/drv_tmr_mapping.c</itemPath>
@@ -182,9 +201,9 @@
         <targetDevice>PIC32MX795F512L</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>ICD3PlatformTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>1.42</languageToolchainVersion>
+        <languageToolchainVersion>2.50</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -314,6 +333,9 @@
         <property key="save-temps" value="false"/>
         <property key="wpo-lto" value="false"/>
       </C32Global>
+      <ICD3PlatformTool>
+        <property key="firmware.download.all" value="false"/>
+      </ICD3PlatformTool>
       <PICkit3PlatformTool>
         <property key="ADC 1" value="true"/>
         <property key="AutoSelectMemRanges" value="auto"/>
